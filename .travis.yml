@@ -1,6 +1,5 @@
 dist: trusty
 language: cpp
-sudo: true
 
 compiler:
   - gcc
@@ -10,7 +9,7 @@ cache: apt
 
 before_install:
   - sudo apt-get -qq update
-  - sudo apt-get install -y libglm-dev libnoise-dev libxrandr-dev libxi-dev
+  - sudo apt-get install -y libglm-dev libnoise-dev libxrandr-dev libxi-dev libxinerama-dev
 
 install:
   - git clone https://github.com/glfw/glfw.git
