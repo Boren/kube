@@ -20,6 +20,7 @@ install:
   - sudo make install
   - cd ..
   - rm build -rf
+  - cd ..
 
 script:
   - mkdir build && cd build
