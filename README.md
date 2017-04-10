@@ -5,20 +5,19 @@ Simple minecraft-like game and rendering engine based on OpenGL.
 * [GLFW](http://www.glfw.org) 3.2 or later
 * [CMake](https://cmake.org) 3.0 or later
 * [GLM](http://glm.g-truc.net) 0.9.8 or later
-* [libnoise](http://libnoise.sourceforge.net) 1.0 or later
 * OpenGL 3.0+ (2008+ Graphics Cards)
 
 ## Build instructions
 ### Linux
 #### Installing Dependencies using APT (Ubuntu, Debian et al.)
 ```
-apt-get install libglfw3 libglfw3-dev cmake libglm-dev libnoise-dev
+apt-get install libglfw3 libglfw3-dev cmake libglm-dev
 ```
 On some older distros (Ubuntu 16.04 and below) version 3.2 of GLFW is not part of the official repositories. You should therefore build it from source. (See below)
 
 #### Installing Dependencies using pacman (Arch Linux)
 ```
-pacman -Syu glfw cmake glm libnoise
+pacman -Syu glfw cmake glm
 ```
 
 #### Installing GLFW 3.2 from source

@@ -1,9 +1,6 @@
-find_package(LibNoise REQUIRED)
-
 include_directories(
 	../../Source
 	.
-	${LIBNOISE_INCLUDE}
 )
 
 add_executable(PointLightTest
@@ -13,4 +10,4 @@ add_executable(PointLightTest
 # Use C++11
 target_compile_features(PointLightTest PRIVATE cxx_range_for)
 
-target_link_libraries(PointLightTest Kube ${LIBNOISE_LIBRARY})
+target_link_libraries(PointLightTest Kube)

@@ -9,7 +9,7 @@ cache: apt
 
 before_install:
   - sudo apt-get -qq update
-  - sudo apt-get install -y libglm-dev libnoise-dev xorg-dev
+  - sudo apt-get install -y libglm-dev xorg-dev
 
 install:
   - git clone https://github.com/glfw/glfw.git
