@@ -18,6 +18,8 @@ install:
   - cd build
   - cmake -D BUILD_SHARED_LIBS=ON ..
   - sudo make install
+  - cd ..
+  - rm build -rf
 
 script:
   - mkdir build && cd build
