@@ -13,7 +13,7 @@ Simple minecraft-like game and rendering engine based on OpenGL.
 ```
 apt-get install libglfw3 libglfw3-dev cmake libglm-dev
 ```
-On some older distros (Ubuntu 16.04 and below) version 3.2 of GLFW is not part of the official repositories. You should therefore build it from source. (See below)
+On some older distros (Ubuntu 16.04 and below) GLFW 3.2 and GLM 0.9.8 is not part of the official repositories. You should therefore build it from source. (See below)
 
 #### Installing Dependencies using pacman (Arch Linux)
 ```
@@ -27,6 +27,16 @@ cd glfw
 mkdir build
 cd build
 cmake -D BUILD_SHARED_LIBS=ON ..
+sudo make install
+```
+
+#### Installing GLM 0.9.8 from source
+```
+git clone https://github.com/g-truc/glm.git
+cd glm
+mkdir build
+cd build
+cmake ..
 sudo make install
 ```
 
