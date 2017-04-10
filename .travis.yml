@@ -9,10 +9,10 @@ cache: apt
 
 before_install:
   - sudo apt-get -qq update
-  - sudo apt-get install -y libglm-dev xorg-dev
+  - sudo apt-get install -y xorg-dev
 
 install:
-  - git clone https://github.com/glfw/glfw.git
+  - git clone -b 3.2.1 --single-branch https://github.com/glfw/glfw.git
   - cd glfw
   - mkdir build
   - cd build
@@ -21,6 +21,18 @@ install:
   - cd ..
   - rm build -rf
   - cd ..
+  - rm glfw -rf
+
+  - git clone -b 0.9.8.4 --single-branch https://github.com/g-truc/glm.git
+  - cd glm
+  - mkdir build
+  - cd build
+  - cmake ..
+  - sudo make install
+  - cd ..
+  - rm build -rf
+  - cd ..
+  - rm glm -rf
 
 script:
   - mkdir build && cd build
