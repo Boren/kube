@@ -34,41 +34,41 @@ include_directories(include/ src/ ${GLFW_INCLUDE_DIR})
 
 # Source files
 set(KUBE_SOURCE_FILES
-	src/KubeEngine.cpp
-	src/KubeEngine.h
-	src/KubeWindow.cpp
-	src/KubeWindow.h
+	src/kubeEngine.cpp
+	src/kubeEngine.h
+	src/kubeWindow.cpp
+	src/kubeWindow.h
 
-	src/Chunks/block.cpp
-	src/Chunks/block.h
-	src/Chunks/blocktype.cpp
-	src/Chunks/blocktype.h
-	src/Chunks/chunk.cpp
-	src/Chunks/chunk.h
-	src/Chunks/chunkManager.cpp
-	src/Chunks/chunkManager.h
+	src/chunks/block.cpp
+	src/chunks/block.h
+	src/chunks/blocktype.cpp
+	src/chunks/blocktype.h
+	src/chunks/chunk.cpp
+	src/chunks/chunk.h
+	src/chunks/chunkManager.cpp
+	src/chunks/chunkManager.h
 
-  src/Renderer/camera.cpp
-  src/Renderer/camera.h
-  src/Renderer/color.h
-  src/Renderer/light.h
-  src/Renderer/material.cpp
-  src/Renderer/material.h
-  src/Renderer/mesh.cpp
-  src/Renderer/mesh.h
-	src/Renderer/renderer.cpp
-	src/Renderer/renderer.h
-  src/Renderer/scenemanager.cpp
-  src/Renderer/scenemanager.h
-	src/Renderer/shader.cpp
-	src/Renderer/shader.h
-	src/Renderer/texture.cpp
-	src/Renderer/texture.h
-  src/Renderer/text2d.cpp
-  src/Renderer/text2d.h
+  src/renderer/camera.cpp
+  src/renderer/camera.h
+  src/renderer/color.h
+  src/renderer/light.h
+  src/renderer/material.cpp
+  src/renderer/material.h
+  src/renderer/mesh.cpp
+  src/renderer/mesh.h
+	src/renderer/renderer.cpp
+	src/renderer/renderer.h
+  src/renderer/scenemanager.cpp
+  src/renderer/scenemanager.h
+	src/renderer/shader.cpp
+	src/renderer/shader.h
+	src/renderer/texture.cpp
+	src/renderer/texture.h
+  src/renderer/text2d.cpp
+  src/renderer/text2d.h
 
-	src/Utils/log.cpp
-	src/Utils/log.h)
+	src/utils/log.cpp
+  src/utils/log.h)
 
 add_library(Kube src/glad.c ${KUBE_SOURCE_FILES})
 

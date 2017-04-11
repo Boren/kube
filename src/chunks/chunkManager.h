@@ -3,7 +3,7 @@
 #include <functional>
 #include "chunk.h"
 #include "block.h"
-#include "Renderer/camera.h"
+#include "renderer/camera.h"
 #include <unordered_map>
 #include <glm/glm.hpp>
 
@@ -61,7 +61,7 @@ public:
 
 	int getNumberOfVertices();
 
-	
+
 	void setLoadDistance(int loadDistance);
 	void setViewDistance(int viewDistance);
 	void setDynamicLoading(bool dynamicLoading);

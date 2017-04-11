@@ -6,7 +6,7 @@
 #include <algorithm>
 
 #include "shader.h"
-#include "../Utils/log.h"
+#include "../utils/log.h"
 
 Shader::Shader() {
 	m_handle = 0;
@@ -24,7 +24,7 @@ bool Shader::compileShader(std::string path, ShaderType shaderType) {
 		case ShaderType::VERTEX:
 			shaderId = glCreateShader(GL_VERTEX_SHADER);
 			break;
-	} 
+	}
 
 	// Read the shader code from file
 	std::string shaderCode;

@@ -1,6 +1,6 @@
 #include "sample.h"
 #include <iostream>
-#include <Utils/log.h>
+#include <utils/log.h>
 #define _USE_MATH_DEFINES
 #include <math.h>
 

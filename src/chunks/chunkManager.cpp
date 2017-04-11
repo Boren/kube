@@ -4,7 +4,7 @@
 #include "chunkManager.h"
 
 #include <sstream>
-#include "Utils/log.h"
+#include "utils/log.h"
 
 ChunkManager::ChunkManager(int loadDistance, int viewDistance, bool dynamicLoading) {
 	setLoadDistance(loadDistance);

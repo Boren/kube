@@ -3,10 +3,10 @@
 #include <glad/glad.h>
 #include <vector>
 #include <glm/glm.hpp>
-#include "Chunks/chunkManager.h"
-#include "Renderer/renderer.h"
-#include "KubeWindow.h"
-#include "Renderer/scenemanager.h"
+#include "chunks/chunkManager.h"
+#include "renderer/renderer.h"
+#include "kubeWindow.h"
+#include "renderer/scenemanager.h"
 
 //! Main class keeping track of the whole engine
 class Engine {

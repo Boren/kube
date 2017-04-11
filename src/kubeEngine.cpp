@@ -1,12 +1,12 @@
-#include "KubeEngine.h"
+#include "kubeEngine.h"
 
 #include <iostream>
 #include <iomanip>
 #include <sstream>
 
-#include "Chunks/block.h"
-#include "Utils/log.h"
-#include "Renderer/text2d.h"
+#include "chunks/block.h"
+#include "utils/log.h"
+#include "renderer/text2d.h"
 
 Engine::Engine()
 {

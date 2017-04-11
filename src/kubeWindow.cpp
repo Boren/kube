@@ -1,5 +1,5 @@
-#include "KubeWindow.h"
-#include "Utils/log.h"
+#include "kubeWindow.h"
+#include "utils/log.h"
 #include <math.h>
 #include <iostream>
 

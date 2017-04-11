@@ -3,8 +3,8 @@
 #include <sstream>
 #include <glm/glm.hpp>
 #include "chunk.h"
-#include "Renderer/renderer.h"
-#include "Utils/log.h"
+#include "renderer/renderer.h"
+#include "utils/log.h"
 
 const float Chunk::BLOCK_SIZE = 1.0f;
 
@@ -135,6 +135,10 @@ Block* Chunk::getBlock(glm::ivec3 coord) {
 }
 
 void Chunk::buildMesh() {
+	std::stringstream ss;
+	ss << "Meshing chunk (" << m_chunkCoord.x << "," << m_chunkCoord.y << "," << m_chunkCoord.z << ")";
+	Log::message(Log::DEBUG, "Chunk", ss.str());
+
 	// Loop through each block
 	for (int x = 0; x < ChunkManager::CHUNK_SIZE; x++) {
 		for (int y = 0; y < ChunkManager::CHUNK_SIZE; y++) {

@@ -1,6 +1,6 @@
 #include "sample.h"
 #include <iostream>
-#include <Utils/log.h>
+#include <utils/log.h>
 #define _USE_MATH_DEFINES
 #include <math.h>
 
@@ -83,9 +83,9 @@ void Sample::run() {
 
 void Sample::onChunkLoad(Chunk* chunk) {
 	// Generate heightmap for this chunk
-	heightMapBuilder.SetBounds(chunk->m_chunkCoord.x * NOISE_FREQUENCY, 
-		chunk->m_chunkCoord.x * NOISE_FREQUENCY + NOISE_FREQUENCY, 
-		chunk->m_chunkCoord.z * NOISE_FREQUENCY, 
+	heightMapBuilder.SetBounds(chunk->m_chunkCoord.x * NOISE_FREQUENCY,
+		chunk->m_chunkCoord.x * NOISE_FREQUENCY + NOISE_FREQUENCY,
+		chunk->m_chunkCoord.z * NOISE_FREQUENCY,
 		chunk->m_chunkCoord.z * NOISE_FREQUENCY + NOISE_FREQUENCY);
 	heightMapBuilder.Build();
 

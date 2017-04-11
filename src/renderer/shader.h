@@ -19,7 +19,7 @@ public:
 
     //! Default Constructor
 	Shader();
-	
+
     /*!
      * \brief Compiles a shader
      * \param path File path from current working directory containing the shader source

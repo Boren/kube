@@ -19,10 +19,10 @@
 #include <string>
 
 #include "renderer.h"
-#include "../Chunks/chunkManager.h"
+#include "../chunks/chunkManager.h"
 #include "text2d.h"
 #include "shader.h"
-#include "../Utils/log.h"
+#include "../utils/log.h"
 
 bool Renderer::initialize(int windowWidth, int windowHeight) {
     m_windowHeight = windowHeight;

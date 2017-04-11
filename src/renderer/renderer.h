@@ -3,7 +3,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-#include "Chunks/chunkManager.h"
+#include "chunks/chunkManager.h"
 #include "scenemanager.h"
 #include "camera.h"
 #include "shader.h"
