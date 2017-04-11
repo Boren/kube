@@ -1,3 +1,5 @@
+set(TARGET_NAME TerrainGeneration)
+
 find_package(LibNoise REQUIRED)
 
 include_directories(
@@ -11,6 +13,10 @@ add_executable(TerrainGeneration
 	sample.h
 	noise/noiseutils.cpp
 	noise/noiseutils.h)
+
+# Move assets to build dir
+file(COPY shaders DESTINATION .)
+file(COPY fonts DESTINATION .)
 
 # Use C++11
 target_compile_features(TerrainGeneration PRIVATE cxx_range_for)
