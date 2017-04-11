@@ -22,8 +22,8 @@
 
 #include <fstream>
 
-#include <noise/interp.h>
-#include <noise/mathconsts.h>
+#include <interp.h>
+#include <mathconsts.h>
 
 #include "noiseutils.h"
 
@@ -190,7 +190,7 @@ const Color& GradientColor::GetColor (double gradientPos) const
     m_workingColor = m_pGradientPoints[index1].color;
     return m_workingColor;
   }
-  
+
   // Compute the alpha value used for linear interpolation.
   double input0 = m_pGradientPoints[index0].pos;
   double input1 = m_pGradientPoints[index1].pos;
@@ -586,7 +586,7 @@ void WriterBMP::WriteDestFile ()
   // File object used to write the file.
   std::ofstream os;
   os.clear ();
-  
+
   // Allocate a buffer to hold one horizontal line in the bitmap.
   try {
     pLineBuffer = new noise::uint8[bufferSize];
@@ -1055,7 +1055,7 @@ double RendererImage::CalcLightIntensity (double center, double left,
   double ix = (I_MAX - io) * m_lightContrast * SQRT_2 * m_cosElev
     * m_cosAzimuth;
   double iy = (I_MAX - io) * m_lightContrast * SQRT_2 * m_cosElev
-    * m_sinAzimuth; 
+    * m_sinAzimuth;
   double intensity = (ix * (left - right) + iy * (down - up) + io);
   if (intensity < 0.0) {
     intensity = 0.0;
