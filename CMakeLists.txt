@@ -1,7 +1,7 @@
 # Set CMake version number
 cmake_minimum_required(VERSION 2.8.12)
 
-# Set project name
+# Set project name and version
 project(Kube)
 set(KUBE_VERSION_MAJOR 0)
 set(KUBE_VERSION_MINOR 1)
@@ -14,4 +14,89 @@ find_package(Doxygen)
 option (KUBE_BUILD_SAMPLES "Build sample applications" TRUE)
 option (KUBE_BUILD_DOCUMENTATION "Create HTML based engine documentation (Requires Doxygen)" ${DOXYGEN_FOUND})
 
-add_subdirectory(Kube)
+# Define target name
+set (TARGET_NAME Kube)
+
+# Flags
+# TODO: Figure out why we need this, GLFW is not happy without
+add_definitions(
+	-DTW_STATIC
+	-DTW_NO_LIB_PRAGMA
+	-DTW_NO_DIRECT3D
+	-D_CRT_SECURE_NO_WARNINGS
+)
+
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake/")
+
+# GLFW
+find_package(GLFW 3.2 REQUIRED)
+include_directories(include/ src/ ${GLFW_INCLUDE_DIR})
+
+# Source files
+set(KUBE_SOURCE_FILES
+	src/KubeEngine.cpp
+	src/KubeEngine.h
+	src/KubeWindow.cpp
+	src/KubeWindow.h
+
+	src/Chunks/block.cpp
+	src/Chunks/block.h
+	src/Chunks/blocktype.cpp
+	src/Chunks/blocktype.h
+	src/Chunks/chunk.cpp
+	src/Chunks/chunk.h
+	src/Chunks/chunkManager.cpp
+	src/Chunks/chunkManager.h
+
+  src/Renderer/camera.cpp
+  src/Renderer/camera.h
+  src/Renderer/color.h
+  src/Renderer/light.h
+  src/Renderer/material.cpp
+  src/Renderer/material.h
+  src/Renderer/mesh.cpp
+  src/Renderer/mesh.h
+	src/Renderer/renderer.cpp
+	src/Renderer/renderer.h
+  src/Renderer/scenemanager.cpp
+  src/Renderer/scenemanager.h
+	src/Renderer/shader.cpp
+	src/Renderer/shader.h
+	src/Renderer/texture.cpp
+	src/Renderer/texture.h
+  src/Renderer/text2d.cpp
+  src/Renderer/text2d.h
+
+	src/Utils/log.cpp
+	src/Utils/log.h)
+
+add_library(Kube src/glad.c ${KUBE_SOURCE_FILES})
+
+# Use C++11
+target_compile_features(Kube PRIVATE cxx_range_for)
+
+target_link_libraries(Kube ${GLFW_LIBRARIES})
+
+
+IF(KUBE_BUILD_SAMPLES)
+	add_subdirectory(samples)
+ENDIF()
+
+IF(KUBE_BUILD_DOCUMENTATION)
+	if(NOT DOXYGEN_FOUND)
+			message(FATAL_ERROR "Doxygen is needed to build the documentation.")
+	endif()
+
+	set(doxyfile_in ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in)
+	set(doxyfile ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile)
+
+	configure_file(${doxyfile_in} ${doxyfile} @ONLY)
+
+	add_custom_target(doc
+			COMMAND ${DOXYGEN_EXECUTABLE} ${doxyfile}
+			WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+			COMMENT "Generating API documentation with Doxygen"
+			VERBATIM)
+
+	#install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/html DESTINATION share/doc)
+ENDIF()
