@@ -1,7 +1,7 @@
 #pragma once
 
 #include <KubeEngine.h>
-#include "noise/noise.h"
+#include "noise.h"
 #include "noise/noiseutils.h"
 
 class Sample {

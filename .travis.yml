@@ -9,7 +9,7 @@ cache: apt
 
 before_install:
   - sudo apt-get -qq update
-  - sudo apt-get install -y xorg-dev
+  - sudo apt-get install -y xorg-dev libnoise-dev doxygen
 
 install:
   - git clone -b 3.2.1 --single-branch https://github.com/glfw/glfw.git
@@ -34,18 +34,8 @@ install:
   - cd ..
   - rm glm -rf
 
-  - git clone --single-branch https://github.com/qknight/libnoise.git
-  - cd libnoise
-  - mkdir build
-  - cd build
-  - cmake ..
-  - sudo make install
-  - cd ..
-  - rm build -rf
-  - cd ..
-  - rm libnoise -rf
-
 script:
   - mkdir build && cd build
   - cmake ..
   - make
+  - make doc

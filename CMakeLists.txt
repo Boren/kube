@@ -9,7 +9,9 @@ set(KUBE_VERSION_MINOR 1)
 # Limit the supported build configurations
 set (KUBE_BUILD_CONFIGURATIONS Release Debug)
 
-# Add option to build samples
+find_package(Doxygen)
+
 option (KUBE_BUILD_SAMPLES "Build sample applications" TRUE)
+option (KUBE_BUILD_DOCUMENTATION "Create HTML based engine documentation (Requires Doxygen)" ${DOXYGEN_FOUND})
 
 add_subdirectory(Kube)
