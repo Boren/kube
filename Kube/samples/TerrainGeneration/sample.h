@@ -1,8 +1,8 @@
 #pragma once
 
-#include <noise/noise.h>
 #include <KubeEngine.h>
-#include "noiseutils.h"
+#include "noise/noise.h"
+#include "noise/noiseutils.h"
 
 class Sample {
 public:

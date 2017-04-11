@@ -11,13 +11,14 @@ Simple minecraft-like game and rendering engine based on OpenGL.
 ### Linux
 #### Installing Dependencies using APT (Ubuntu, Debian et al.)
 ```
-apt-get install libglfw3 libglfw3-dev cmake libglm-dev
+apt-get install libglfw3 libglfw3-dev cmake libglm-dev libnoise-dev
 ```
 On some older distros (Ubuntu 16.04 and below) GLFW 3.2 and GLM 0.9.8 is not part of the official repositories. You should therefore build it from source. (See below)
+Also on some distros, libnoise is getting installed to a different location than the official release. Solution: Adapt code, move files or build from source.
 
 #### Installing Dependencies using pacman (Arch Linux)
 ```
-pacman -Syu glfw cmake glm
+pacman -Syu glfw cmake glm libnoise
 ```
 
 #### Installing GLFW 3.2 from source
@@ -34,6 +35,16 @@ sudo make install
 ```
 git clone https://github.com/g-truc/glm.git
 cd glm
+mkdir build
+cd build
+cmake ..
+sudo make install
+```
+
+#### Installing libnoise 1.0 from source
+```
+git clone https://github.com/qknight/libnoise.git
+cd libnoise
 mkdir build
 cd build
 cmake ..
