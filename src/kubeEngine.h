@@ -17,6 +17,7 @@ bool initialize(std::string windowName);
 void initializeChunkManager(int numX, int numY, int numZ);
 void setSceneManager(SceneManager *sceneManager);
 SceneManager* getSceneManager();
+Renderer* getRenderer();
 void setCamera(Camera *camera);
 Window* getWindow();
 

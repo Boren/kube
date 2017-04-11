@@ -10,6 +10,7 @@ public:
 
 	void onChunkLoad(Chunk * chunk);
 
+	void toggleRenderMode();
 
 private:
 	ChunkManager* m_chunkManager;

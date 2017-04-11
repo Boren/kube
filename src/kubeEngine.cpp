@@ -77,6 +77,11 @@ SceneManager* Engine::getSceneManager() {
 								return pSceneManager;
 }
 
+Renderer* Engine::getRenderer() {
+								return pRenderer;
+}
+
+
 void Engine::setCamera(Camera *camera) {
 								pCamera = camera;
 }

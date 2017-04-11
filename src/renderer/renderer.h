@@ -43,6 +43,8 @@ public:
      */
     void setRenderMode(RenderMode mode);
 
+    RenderMode getCurrentRenderMode();
+
 	float rotateAngle = 0;
 
     Shader* getDefaultShader();

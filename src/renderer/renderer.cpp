@@ -116,7 +116,11 @@ void Renderer::render(SceneManager *sceneManager, Camera *camera) {
 }
 
 void Renderer::setRenderMode(RenderMode mode) {
+  m_renderMode = mode;
+}
 
+RenderMode Renderer::getCurrentRenderMode() {
+  return m_renderMode;
 }
 
 Shader* Renderer::getDefaultShader() {
