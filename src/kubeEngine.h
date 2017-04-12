@@ -7,6 +7,7 @@
 #include "renderer/renderer.h"
 #include "kubeWindow.h"
 #include "renderer/scenemanager.h"
+#include "input/inputManager.h"
 
 //! Main class keeping track of the whole engine
 class Engine {
@@ -17,6 +18,7 @@ bool initialize(std::string windowName);
 void initializeChunkManager(int numX, int numY, int numZ);
 void setSceneManager(SceneManager *sceneManager);
 SceneManager* getSceneManager();
+InputManager* getInputManager();
 Renderer* getRenderer();
 void setCamera(Camera *camera);
 Window* getWindow();
@@ -35,6 +37,7 @@ static Engine *instance;
 
 Window *pWindow;
 SceneManager *pSceneManager;
+InputManager * pInputManager;
 Renderer *pRenderer;
 Camera *pCamera;
 

@@ -61,6 +61,7 @@ bool Engine::initialize(std::string windowName)
 
 								// Initialize scene manager
 								pSceneManager = new SceneManager();
+								pInputManager = new InputManager(pWindow->getWindow());
 
 								initText2D("fonts/CubeFontFilledInvert.dds");
 								Text2DupdateResolution(pWindow->getWidth(), pWindow->getHeight());
@@ -75,6 +76,10 @@ void Engine::setSceneManager(SceneManager * sceneManager)
 
 SceneManager* Engine::getSceneManager() {
 								return pSceneManager;
+}
+
+InputManager* Engine::getInputManager() {
+								return pInputManager;
 }
 
 Renderer* Engine::getRenderer() {
@@ -101,6 +106,7 @@ bool Engine::update(float deltaTime)
 
 								pWindow->update();
 								pRenderer->rotateAngle = 0.0f;
+								pInputManager->update();
 								pSceneManager->update(deltaTime, pCamera);
 								pRenderer->render(pSceneManager, pCamera);
 								pWindow->render();

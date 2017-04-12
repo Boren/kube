@@ -48,6 +48,9 @@ set(KUBE_SOURCE_FILES
 	src/chunks/chunkManager.cpp
 	src/chunks/chunkManager.h
 
+	src/input/inputManager.cpp
+	src/input/inputManager.h
+
   src/renderer/camera.cpp
   src/renderer/camera.h
   src/renderer/color.h

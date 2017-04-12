@@ -57,25 +57,25 @@ void Sample::run() {
 								while(true) {
 																float deltaTime = m_engine->getDeltaTime();
 
-																if (glfwGetKey(m_engine->getWindow()->getWindow(), GLFW_KEY_W)) {
+																if (m_engine->getInputManager()->keyHeld(GLFW_KEY_W)) {
 																								m_camera->moveCurrentDirection(deltaTime * CAMERASPEED);
 																}
 
-																if (glfwGetKey(m_engine->getWindow()->getWindow(), GLFW_KEY_A)) {
+																if (m_engine->getInputManager()->keyHeld(GLFW_KEY_A)) {
 																								m_camera->strafe(deltaTime * -CAMERASPEED);
 																}
 
-																if (glfwGetKey(m_engine->getWindow()->getWindow(), GLFW_KEY_S)) {
+																if (m_engine->getInputManager()->keyHeld(GLFW_KEY_S)) {
 																								m_camera->moveCurrentDirection(deltaTime * -CAMERASPEED);
 																}
 
-																if (glfwGetKey(m_engine->getWindow()->getWindow(), GLFW_KEY_D)) {
+																if (m_engine->getInputManager()->keyHeld(GLFW_KEY_D)) {
 																								m_camera->strafe(deltaTime * CAMERASPEED);
 																}
 
 
-																if (glfwGetKey(m_engine->getWindow()->getWindow(), GLFW_KEY_SPACE) == GLFW_PRESS) {
-
+																if (m_engine->getInputManager()->keyPressed(GLFW_KEY_SPACE)) {
+																	toggleRenderMode();
 																}
 
 																m_camera->rotate((m_engine->getWindow()->getWidth() / 2) - m_engine->getWindow()->getCursorX(),

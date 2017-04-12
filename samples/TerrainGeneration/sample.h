@@ -7,9 +7,7 @@
 class Sample {
 public:
 	void run();
-
 	void onChunkLoad(Chunk * chunk);
-
 	void toggleRenderMode();
 
 private:

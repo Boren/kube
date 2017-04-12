@@ -1,7 +1,7 @@
 #pragma once
 
 #include <glm/glm.hpp>
-#include "renderer/color.h"
+#include "../renderer/color.h"
 #include <string>
 
 class BlockType {
