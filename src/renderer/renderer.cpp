@@ -22,7 +22,6 @@
 #include "../utils/log.h"
 #include "renderer.h"
 #include "shader.h"
-#include "text2d.h"
 
 bool Renderer::initialize(int windowWidth, int windowHeight) {
   m_windowHeight = windowHeight;
@@ -32,18 +31,19 @@ bool Renderer::initialize(int windowWidth, int windowHeight) {
   glClearColor(135 / 255.0f, 206 / 255.0f, 255 / 255.0f, 1);
 
   // Enable depth test
-  glEnable(GL_DEPTH_TEST);
+  // glEnable(GL_DEPTH_TEST);
 
   // Accept fragment if it closer to the camera than the former one
-  glDepthFunc(GL_LESS);
+  // glDepthFunc(GL_LESS);
 
   // Cull back face to optimize rendering
   glEnable(GL_CULL_FACE);
-  glCullFace(GL_BACK);
+  // glCullFace(GL_BACK);
 
   // Load default shader
-  m_defaultShader.compileShader("shaders/VertexShader.vs", Shader::VERTEX);
-  m_defaultShader.compileShader("shaders/FragmentShader.fs", Shader::FRAGMENT);
+  m_defaultShader.compileShader("assets/shaders/BasicPhong.vs", Shader::VERTEX);
+  m_defaultShader.compileShader("assets/shaders/BasicPhong.fs",
+                                Shader::FRAGMENT);
   m_defaultShader.link();
   m_defaultShader.use();
 
@@ -56,11 +56,11 @@ bool Renderer::initialize(int windowWidth, int windowHeight) {
   return true;
 }
 
-void Renderer::render(SceneManager *sceneManager, Camera *camera) {
-  /*
+void Renderer::render(SceneManager *sceneManager, Camera *camera,
+                      TextManager *textManager) {
+
   double renderStartTime = glfwGetTime();
   int numVertices = 0;
-*/
 
   glm::mat4 model = glm::mat4(1.0f);
   model = glm::translate(model, glm::vec3(8, 8, 8));
@@ -95,32 +95,33 @@ void Renderer::render(SceneManager *sceneManager, Camera *camera) {
 
   glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
-  /*char text[256];
-  sprintf(text,"Render: %.3f ms", m_profilingMean);
-  printText2D(text, 10, m_windowHeight - 20, 16);
+  glEnable(GL_CULL_FACE);
+  glEnable(GL_BLEND);
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+  char text[256];
+  sprintf(text, "Render: %.3f ms (%.0f FPS)", m_profilingMean,
+          1000 / m_profilingMean);
+  textManager->renderText(text, 5.0f, 5.0f, 0.4f, glm::vec3(0.2f, 0.2f, 0.2f));
 
   text[256];
-  sprintf(text,"FPS: %.0f", 1000 / m_profilingMean);
-  printText2D(text, 10, m_windowHeight - 40, 16);
+  sprintf(text, "Camera: X:%.0f Y:%.0f Z:%.0f", camera->getPosition().x,
+          camera->getPosition().y, camera->getPosition().z);
+  textManager->renderText(text, 5.0f, 23.0f, 0.4f, glm::vec3(0.2f, 0.2f, 0.2f));
 
-      text[256];
-      sprintf(text, "Camera: X:%.0f Y:%.0f Z:%.0f", camera->getPosition().x,
-  camera->getPosition().y, camera->getPosition().z);
-      printText2D(text, 10, m_windowHeight - 60, 16);
-
-      text[256];
-      sprintf(text, "Vertices: %d",
-  sceneManager->getChunkManager()->getNumberOfVertices());
-      printText2D(text, 10, m_windowHeight - 80, 16);
+  text[256];
+  sprintf(text, "Vertices: %d",
+          sceneManager->getChunkManager()->getNumberOfVertices());
+  textManager->renderText(text, 5.0f, 41.0f, 0.4f, glm::vec3(0.2f, 0.2f, 0.2f));
 
   m_profiling.push_back((glfwGetTime() - renderStartTime) * 1000);
 
-  if(glfwGetTime() > m_lastPrint + 0.3) {
-      double sum = std::accumulate(m_profiling.begin(), m_profiling.end(), 0.0);
-      m_profilingMean = sum / m_profiling.size();
-      m_profiling.clear();
-      m_lastPrint = glfwGetTime();
-  }*/
+  if (glfwGetTime() > m_lastPrint + 0.3) {
+    double sum = std::accumulate(m_profiling.begin(), m_profiling.end(), 0.0);
+    m_profilingMean = sum / m_profiling.size();
+    m_profiling.clear();
+    m_lastPrint = glfwGetTime();
+  }
 }
 
 void Renderer::setRenderMode(RenderMode mode) { m_renderMode = mode; }

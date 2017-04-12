@@ -23,12 +23,13 @@ in float fragmentAO;
 
 out vec3 color;
 
-vec3 applyLight(Light light, vec3 surfaceColor, vec3 surfaceNormal, vec3 surfacePosition, float ao) {
+vec3 applyLight(Light light, vec3 surfaceColor, vec3 surfaceNormal,
+                vec3 surfacePosition, float ao) {
   vec3 surfaceToLight;
   vec3 surfaceToCamera = normalize(cameraPosition - surfacePosition);
   float attenuation = 1.0;
 
-  if(light.position.w == 0.0) {
+  if (light.position.w == 0.0) {
     surfaceToLight = normalize(light.position.xyz);
   } else {
     surfaceToLight = normalize(light.position.xyz - surfacePosition);
@@ -46,23 +47,25 @@ vec3 applyLight(Light light, vec3 surfaceColor, vec3 surfaceNormal, vec3 surface
   // Calculate specular component
   float specularStrength = 0.0;
   float shininess = 80.0f;
-  if(diffuseStrength > 0.0) {
-    specularStrength = pow(max(0.0, dot(surfaceToCamera, reflect(-surfaceToLight, surfaceNormal))), shininess);
+  if (diffuseStrength > 0.0) {
+    specularStrength = pow(
+        max(0.0, dot(surfaceToCamera, reflect(-surfaceToLight, surfaceNormal))),
+        shininess);
   }
 
   vec3 specular = specularStrength * vec3(1.0f, 1.0f, 1.0f) * light.color;
 
-  return ambient + attenuation*(diffuse+specular);
+  return ambient + attenuation * (diffuse + specular);
 }
 
-void main(){
-    // Find normal of fragment in world space
-    vec3 normal = normalize(transpose(inverse(mat3(model))) * fragmentNormal);
-    vec3 position = vec3(model * vec4(fragmentPosition, 1));
+void main() {
+  // Find normal of fragment in world space
+  vec3 normal = normalize(transpose(inverse(mat3(model))) * fragmentNormal);
+  vec3 position = vec3(model * vec4(fragmentPosition, 1));
 
-    color = vec3(0);
+  color = vec3(0);
 
-    for(int i = 0; i < numLights; i++) {
-      color += applyLight(lights[i], fragmentColor, normal, position, fragmentAO);
-    }
+  for (int i = 0; i < numLights; i++) {
+    color += applyLight(lights[i], fragmentColor, normal, position, fragmentAO);
+  }
 }

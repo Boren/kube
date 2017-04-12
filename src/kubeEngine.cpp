@@ -5,7 +5,6 @@
 #include <sstream>
 
 #include "chunks/block.h"
-#include "renderer/text2d.h"
 #include "utils/log.h"
 
 Engine::Engine() {
@@ -59,11 +58,9 @@ bool Engine::initialize(std::string windowName) {
   }
 
   // Initialize scene manager
+  pTextManager = new TextManager();
   pSceneManager = new SceneManager();
   pInputManager = new InputManager(pWindow->getWindow());
-
-  initText2D("fonts/CubeFontFilledInvert.dds");
-  Text2DupdateResolution(pWindow->getWidth(), pWindow->getHeight());
 
   return true;
 }
@@ -93,7 +90,7 @@ bool Engine::update(float deltaTime) {
   pRenderer->rotateAngle = 0.0f;
   pInputManager->update();
   pSceneManager->update(deltaTime, pCamera);
-  pRenderer->render(pSceneManager, pCamera);
+  pRenderer->render(pSceneManager, pCamera, pTextManager);
   pWindow->render();
 
   return true;

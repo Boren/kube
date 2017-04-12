@@ -47,7 +47,9 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake/")
 
 # GLFW
 find_package(GLFW 3.2 REQUIRED)
-include_directories(include/ src/ ${GLFW_INCLUDE_DIR})
+
+# Freetype
+find_package(Freetype 2.7 REQUIRED)
 
 # Source files
 set(KUBE_SOURCE_FILES
@@ -82,17 +84,18 @@ set(KUBE_SOURCE_FILES
   src/renderer/scenemanager.h
 	src/renderer/shader.cpp
 	src/renderer/shader.h
+  src/renderer/textManager.cpp
+  src/renderer/textManager.h
 	src/renderer/texture.cpp
 	src/renderer/texture.h
-  src/renderer/text2d.cpp
-  src/renderer/text2d.h
 
 	src/utils/log.cpp
   src/utils/log.h)
 
 add_library(Kube src/glad.c ${KUBE_SOURCE_FILES})
 
-target_link_libraries(Kube ${GLFW_LIBRARIES})
+include_directories(include/ src/ ${GLFW_INCLUDE_DIR} ${FREETYPE_INCLUDE_DIRS})
+target_link_libraries(Kube ${GLFW_LIBRARIES} ${FREETYPE_LIBRARIES})
 
 
 IF(KUBE_BUILD_SAMPLES)

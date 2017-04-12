@@ -3,7 +3,8 @@
 #include <sstream>
 #include <string>
 
-SceneManager::SceneManager() {}
+SceneManager::SceneManager() {
+}
 
 void SceneManager::setChunkManager(ChunkManager *chunkManager) {
   pChunkManager = chunkManager;
@@ -25,7 +26,7 @@ void SceneManager::updateLightUniform(Shader *shader) {
   shader->setUniform1i("numLights", (int)m_lights.size());
 
   //!< \todo Incorporate this into shader class after generic shader uniform
-  //!setting is implemented
+  //! setting is implemented
   for (size_t i = 0; i < m_lights.size(); i++) {
     std::stringstream ss;
     ss << "lights[" << i << "].position";
