@@ -57,8 +57,10 @@ bool Renderer::initialize(int windowWidth, int windowHeight) {
 }
 
 void Renderer::render(SceneManager *sceneManager, Camera *camera) {
+  /*
   double renderStartTime = glfwGetTime();
   int numVertices = 0;
+*/
 
   glm::mat4 model = glm::mat4(1.0f);
   model = glm::translate(model, glm::vec3(8, 8, 8));
