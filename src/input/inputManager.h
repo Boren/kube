@@ -1,7 +1,7 @@
 #pragma once
 
-#include <vector>
 #include <unordered_set>
+#include <vector>
 
 #include <GLFW/glfw3.h>
 
@@ -25,11 +25,12 @@ public:
 private:
   GLFWwindow *mWindow;
   static std::unordered_set<int> pressedKeys;
-  //static std::unordered_set<int> pressedScancodes;
+  // static std::unordered_set<int> pressedScancodes;
   static std::unordered_set<int> pressedButtons;
   static std::unordered_set<int> newPressedKeys;
-  //static std::unordered_set<int> newPressedScancodes;
+  // static std::unordered_set<int> newPressedScancodes;
   static std::unordered_set<int> newPressedButtons;
 
-  static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
+  static void keyCallback(GLFWwindow *window, int key, int scancode, int action,
+                          int mods);
 };

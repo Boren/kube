@@ -90,3 +90,4 @@ crashlytics-build.properties
 Voxler
 
 /build/
+compile_commands.json

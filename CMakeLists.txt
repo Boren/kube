@@ -1,10 +1,15 @@
 # Set CMake version number
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.1)
 
 # Set project name and version
 project(Kube)
 set(KUBE_VERSION_MAJOR 0)
 set(KUBE_VERSION_MINOR 1)
+
+# Use C++14
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Limit the supported build configurations
 set (KUBE_BUILD_CONFIGURATIONS Release Debug)
@@ -74,9 +79,6 @@ set(KUBE_SOURCE_FILES
   src/utils/log.h)
 
 add_library(Kube src/glad.c ${KUBE_SOURCE_FILES})
-
-# Use C++11
-target_compile_features(Kube PRIVATE cxx_range_for)
 
 target_link_libraries(Kube ${GLFW_LIBRARIES})
 

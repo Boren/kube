@@ -4,12 +4,12 @@
 
 class Sample {
 public:
-	void run();
+  void run();
 
-	void onChunkLoad(Chunk * chunk);
+  void onChunkLoad(Chunk *chunk);
 
 private:
-	ChunkManager* m_chunkManager;
-	Engine* m_engine;
-	Camera* m_camera;
+  ChunkManager *m_chunkManager;
+  Engine *m_engine;
+  Camera *m_camera;
 };

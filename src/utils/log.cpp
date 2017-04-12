@@ -1,45 +1,44 @@
 #include "log.h"
-#include <iostream>
-#include <iomanip>
 #include <ctime>
+#include <iomanip>
+#include <iostream>
 #include <string>
 
 Log::Level Log::currentLevel = Level::DEBUG;
 
 void Log::message(Log::Level level, std::string caller, std::string message) {
-    if(level <= currentLevel) {
-        // Get time and format it
-        time_t rawtime;
-        struct tm * timeinfo;
-        char buffer[80];
+  if (level <= currentLevel) {
+    // Get time and format it
+    time_t rawtime;
+    struct tm *timeinfo;
+    char buffer[80];
 
-        time (&rawtime);
-        timeinfo = localtime(&rawtime);
+    time(&rawtime);
+    timeinfo = localtime(&rawtime);
 
-        strftime(buffer,80,"%H:%M:%S",timeinfo);
-        std::string timeString(buffer);
+    strftime(buffer, 80, "%H:%M:%S", timeinfo);
+    std::string timeString(buffer);
 
-        // Get loglevel as string
-        std::string logLevelString;
-        switch (level) {
-            case Level::FATAL:
-                logLevelString = "FATAL";
-                break;
-            case Level::ERROR:
-                logLevelString = "ERROR";
-                break;
-            case Level::WARN:
-                logLevelString = "WARN";
-                break;
-            case Level::DEBUG:
-                logLevelString = "DEBUG";
-                break;
-        }
-
-        std::cout << "[" << timeString << " - " << logLevelString << " - " << caller << "] " << message << std::endl;
+    // Get loglevel as string
+    std::string logLevelString;
+    switch (level) {
+    case Level::FATAL:
+      logLevelString = "FATAL";
+      break;
+    case Level::ERROR:
+      logLevelString = "ERROR";
+      break;
+    case Level::WARN:
+      logLevelString = "WARN";
+      break;
+    case Level::DEBUG:
+      logLevelString = "DEBUG";
+      break;
     }
+
+    std::cout << "[" << timeString << " - " << logLevelString << " - " << caller
+              << "] " << message << std::endl;
+  }
 }
 
-void Log::setLevel(Log::Level level) {
-    currentLevel = level;
-}
+void Log::setLevel(Log::Level level) { currentLevel = level; }

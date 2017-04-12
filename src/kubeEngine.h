@@ -1,45 +1,45 @@
 #pragma once
 
-#include <glad/glad.h>
-#include <vector>
-#include <glm/glm.hpp>
 #include "chunks/chunkManager.h"
-#include "renderer/renderer.h"
-#include "kubeWindow.h"
-#include "renderer/scenemanager.h"
 #include "input/inputManager.h"
+#include "kubeWindow.h"
+#include "renderer/renderer.h"
+#include "renderer/scenemanager.h"
+#include <glad/glad.h>
+#include <glm/glm.hpp>
+#include <vector>
 
 //! Main class keeping track of the whole engine
 class Engine {
 public:
-Engine();
+  Engine();
 
-bool initialize(std::string windowName);
-void initializeChunkManager(int numX, int numY, int numZ);
-void setSceneManager(SceneManager *sceneManager);
-SceneManager* getSceneManager();
-InputManager* getInputManager();
-Renderer* getRenderer();
-void setCamera(Camera *camera);
-Window* getWindow();
+  bool initialize(std::string windowName);
+  void initializeChunkManager(int numX, int numY, int numZ);
+  void setSceneManager(SceneManager *sceneManager);
+  SceneManager *getSceneManager();
+  InputManager *getInputManager();
+  Renderer *getRenderer();
+  void setCamera(Camera *camera);
+  Window *getWindow();
 
-bool update(float deltaTime);
+  bool update(float deltaTime);
 
-float getDeltaTime();
+  float getDeltaTime();
 
-// Input
-//void handleInput(float deltaTime);
-//void keyPressed(int key, int scancode, int mods);
-//void keyReleased(int key, int scancode, int mods);
+  // Input
+  // void handleInput(float deltaTime);
+  // void keyPressed(int key, int scancode, int mods);
+  // void keyReleased(int key, int scancode, int mods);
 
 private:
-static Engine *instance;
+  static Engine *instance;
 
-Window *pWindow;
-SceneManager *pSceneManager;
-InputManager * pInputManager;
-Renderer *pRenderer;
-Camera *pCamera;
+  Window *pWindow;
+  SceneManager *pSceneManager;
+  InputManager *pInputManager;
+  Renderer *pRenderer;
+  Camera *pCamera;
 
-float m_previousTime = 0.0f;
+  float m_previousTime = 0.0f;
 };

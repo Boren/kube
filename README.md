@@ -3,7 +3,7 @@ Simple minecraft-like game and rendering engine based on OpenGL. Focus on new st
 
 ## Dependencies
 * [GLFW](http://www.glfw.org) 3.2 or later
-* [CMake](https://cmake.org) 2.8.12 or later
+* [CMake](https://cmake.org) 3.1 or later
 * [GLM](http://glm.g-truc.net) 0.9.8 or later
 * libnoise 1.0
 * OpenGL 4.5
