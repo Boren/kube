@@ -2,9 +2,10 @@
 Simple minecraft-like game and rendering engine based on OpenGL. Focus on new standards and state-of-the-art technologies. Educational project.
 
 ## Dependencies
-* [GLFW](http://www.glfw.org) 3.2 or later
-* [CMake](https://cmake.org) 3.1 or later
-* [GLM](http://glm.g-truc.net) 0.9.8 or later
+* [GLFW](http://www.glfw.org) 3.2
+* [CMake](https://cmake.org) 3.1
+* [GLM](http://glm.g-truc.net) 0.9.8
+* Freetype 2.7
 * libnoise 1.0
 * OpenGL 4.5
 * C++14 Compiler (GCC 5+, Clang 3.4+)
@@ -13,14 +14,14 @@ Simple minecraft-like game and rendering engine based on OpenGL. Focus on new st
 ### Linux
 #### Installing Dependencies using APT (Ubuntu, Debian et al.)
 ```
-apt-get install libglfw3 libglfw3-dev cmake libglm-dev libnoise-dev
+apt-get install libglfw3 libglfw3-dev cmake libglm-dev libnoise-dev libfreetype6-dev
 ```
 On some older distros (Ubuntu 16.04 and below) GLFW 3.2 and GLM 0.9.8 is not part of the official repositories. You should therefore build it from source. (See below)
 Also on some distros, libnoise is getting installed to a different location than the official release. Solution: Adapt code, move files or build from source.
 
 #### Installing Dependencies using pacman (Arch Linux)
 ```
-pacman -Syu glfw cmake glm libnoise
+pacman -Syu glfw cmake glm libnoise freetype2
 ```
 
 #### Installing GLFW 3.2 from source

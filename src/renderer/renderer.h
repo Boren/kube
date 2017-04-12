@@ -8,6 +8,7 @@
 #include "light.h"
 #include "scenemanager.h"
 #include "shader.h"
+#include "textManager.h"
 
 class SceneManager;
 
@@ -34,7 +35,7 @@ public:
    * \param sceneManager Scenemanager to use in rendering
    * \param camera Camera object to use in rendering
    */
-  void render(SceneManager *sceneManager, Camera *camera);
+  void render(SceneManager *sceneManager, Camera *camera, TextManager *textManager);
 
   /*!
    * \brief Set a new render mode

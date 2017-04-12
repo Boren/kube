@@ -5,6 +5,7 @@
 #include "kubeWindow.h"
 #include "renderer/renderer.h"
 #include "renderer/scenemanager.h"
+#include "renderer/textManager.h"
 #include <glad/glad.h>
 #include <glm/glm.hpp>
 #include <vector>
@@ -38,6 +39,7 @@ private:
   Window *pWindow;
   SceneManager *pSceneManager;
   InputManager *pInputManager;
+  TextManager *pTextManager;
   Renderer *pRenderer;
   Camera *pCamera;
 

@@ -10,8 +10,7 @@ add_executable(PointLightTest
 	sample.h)
 
 # Move assets to build dir
-file(COPY shaders DESTINATION .)
-file(COPY fonts DESTINATION .)
+file(COPY assets DESTINATION .)
 
 # Use C++11
 target_compile_features(PointLightTest PRIVATE cxx_range_for)
