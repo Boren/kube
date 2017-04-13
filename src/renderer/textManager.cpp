@@ -2,8 +2,6 @@
 
 #include "../utils/log.h"
 
-#include <glad/glad.h>
-#include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
@@ -38,8 +36,8 @@ TextManager::TextManager() {
 
   Log::message(Log::DEBUG, "Text Manager", "Loaded font");
 
-  m_textShader.compileShader("assets/shaders/BasicText.vs", Shader::VERTEX);
-  m_textShader.compileShader("assets/shaders/BasicText.fs", Shader::FRAGMENT);
+    m_textShader.compileShader("assets/shaders/BasicText.vert", Shader::VERTEX);
+    m_textShader.compileShader("assets/shaders/BasicText.frag", Shader::FRAGMENT);
   m_textShader.link();
   m_textShader.use();
 
@@ -71,10 +69,10 @@ TextManager::TextManager() {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     // Now store character for later use
     Character character = {
-        texture,
-        glm::ivec2(face->glyph->bitmap.width, face->glyph->bitmap.rows),
-        glm::ivec2(face->glyph->bitmap_left, face->glyph->bitmap_top),
-        face->glyph->advance.x};
+            texture,
+            glm::ivec2(face->glyph->bitmap.width, face->glyph->bitmap.rows),
+            glm::ivec2(face->glyph->bitmap_left, face->glyph->bitmap_top),
+            (GLuint) face->glyph->advance.x};
     Characters.insert(std::pair<GLchar, Character>(c, character));
   }
   glBindTexture(GL_TEXTURE_2D, 0);
