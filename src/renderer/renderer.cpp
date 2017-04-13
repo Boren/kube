@@ -28,7 +28,7 @@ bool Renderer::initialize(int windowWidth, int windowHeight) {
   m_windowWidth = windowWidth;
 
   // Set background color
-  glClearColor(135 / 255.0f, 206 / 255.0f, 255 / 255.0f, 1);
+  glClearColor(17 / 255.0f, 83 / 255.0f, 255 / 255.0f, 1);
 
   // Enable depth test
   glEnable(GL_DEPTH_TEST);
@@ -40,7 +40,7 @@ bool Renderer::initialize(int windowWidth, int windowHeight) {
   glEnable(GL_CULL_FACE);
   glCullFace(GL_BACK);
 
-  // Enable blending for transparency
+  // Enable blending for transparency and text
   glEnable(GL_BLEND);
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
@@ -60,7 +60,6 @@ void Renderer::render(SceneManager *sceneManager, Camera *camera,
                       TextManager *textManager) {
 
   double renderStartTime = glfwGetTime();
-  int numVertices = 0;
 
   glm::mat4 model = glm::mat4(1.0f);
   model = glm::translate(model, glm::vec3(8, 8, 8));
@@ -93,6 +92,7 @@ void Renderer::render(SceneManager *sceneManager, Camera *camera,
 
   sceneManager->render(this);
 
+  // Text rendering. Disable wireframe
   glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
   char text[256];
@@ -100,12 +100,10 @@ void Renderer::render(SceneManager *sceneManager, Camera *camera,
           1000 / m_profilingMean);
   textManager->renderText(text, 5.0f, 5.0f, 0.3f, glm::vec3(0.2f, 0.2f, 0.2f));
 
-  text[256];
   sprintf(text, "Camera: X:%.0f Y:%.0f Z:%.0f", camera->getPosition().x,
           camera->getPosition().y, camera->getPosition().z);
   textManager->renderText(text, 5.0f, 23.0f, 0.3f, glm::vec3(0.2f, 0.2f, 0.2f));
 
-  text[256];
   sprintf(text, "Vertices: %d",
           sceneManager->getChunkManager()->getNumberOfVertices());
   textManager->renderText(text, 5.0f, 41.0f, 0.3f, glm::vec3(0.2f, 0.2f, 0.2f));
