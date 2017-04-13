@@ -4,7 +4,7 @@
 #include "input/inputManager.h"
 #include "kubeWindow.h"
 #include "renderer/renderer.h"
-#include "renderer/scenemanager.h"
+#include "scene/scenemanager.h"
 #include "renderer/textManager.h"
 #include <glad/glad.h>
 #include <glm/glm.hpp>

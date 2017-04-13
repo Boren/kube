@@ -2,8 +2,8 @@
 
 #include "../chunks/chunkManager.h"
 #include "light.h"
-#include "renderer.h"
-#include "shader.h"
+#include "../renderer/renderer.h"
+#include "../renderer/shader.h"
 #include <vector>
 
 class Renderer;

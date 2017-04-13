@@ -70,18 +70,12 @@ set(KUBE_SOURCE_FILES
 	src/input/inputManager.cpp
 	src/input/inputManager.h
 
-  src/renderer/camera.cpp
-  src/renderer/camera.h
-  src/renderer/color.h
-  src/renderer/light.h
   src/renderer/material.cpp
   src/renderer/material.h
   src/renderer/mesh.cpp
   src/renderer/mesh.h
 	src/renderer/renderer.cpp
 	src/renderer/renderer.h
-  src/renderer/scenemanager.cpp
-  src/renderer/scenemanager.h
 	src/renderer/shader.cpp
 	src/renderer/shader.h
   src/renderer/textManager.cpp
@@ -89,6 +83,13 @@ set(KUBE_SOURCE_FILES
 	src/renderer/texture.cpp
 	src/renderer/texture.h
 
+  src/scene/camera.cpp
+  src/scene/camera.h
+  src/scene/light.h
+  src/scene/scenemanager.cpp
+  src/scene/scenemanager.h
+
+  src/utils/color.h
 	src/utils/log.cpp
   src/utils/log.h)
 

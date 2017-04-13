@@ -1,6 +1,6 @@
 #include "chunk.h"
-#include "renderer/renderer.h"
-#include "utils/log.h"
+#include "../renderer/renderer.h"
+#include "../utils/log.h"
 #include <glm/glm.hpp>
 #include <iostream>
 #include <sstream>

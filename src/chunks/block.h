@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../renderer/color.h"
+#include "../utils/color.h"
 #include "blocktype.h"
 #include <glm/glm.hpp>
 

@@ -3,10 +3,10 @@
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
 
-#include "camera.h"
-#include "chunks/chunkManager.h"
-#include "light.h"
-#include "scenemanager.h"
+#include "../chunks/chunkManager.h"
+#include "../scene/camera.h"
+#include "../scene/light.h"
+#include "../scene/scenemanager.h"
 #include "shader.h"
 #include "textManager.h"
 
@@ -35,7 +35,8 @@ public:
    * \param sceneManager Scenemanager to use in rendering
    * \param camera Camera object to use in rendering
    */
-  void render(SceneManager *sceneManager, Camera *camera, TextManager *textManager);
+  void render(SceneManager *sceneManager, Camera *camera,
+              TextManager *textManager);
 
   /*!
    * \brief Set a new render mode
@@ -54,7 +55,7 @@ private:
   int m_windowWidth;  //!< Current width of window
 
   Shader m_defaultShader; //!< Shader to use by renderer if no other shader is
-                          //!selected
+                          //! selected
 
   RenderMode m_renderMode = RENDERMODE_SHADED;
 

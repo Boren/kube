@@ -2,7 +2,7 @@
 
 #include "block.h"
 #include "chunk.h"
-#include "renderer/camera.h"
+#include "../scene/camera.h"
 #include <functional>
 #include <glm/glm.hpp>
 #include <unordered_map>

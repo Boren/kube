@@ -1,6 +1,6 @@
 #pragma once
 
-#include "color.h"
+#include "../utils/color.h"
 #include <glm/glm.hpp>
 
 //! Represents a single instance of light in the world

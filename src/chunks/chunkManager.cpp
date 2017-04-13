@@ -3,7 +3,7 @@
 #include <iomanip>
 #include <iostream>
 
-#include "utils/log.h"
+#include "../utils/log.h"
 #include <sstream>
 
 ChunkManager::ChunkManager(int loadDistance, int viewDistance,
