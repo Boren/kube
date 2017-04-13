@@ -1,4 +1,4 @@
-#version 330 core
+#version 450 core
 
 // Uniforms
 uniform vec3 cameraPosition;
@@ -20,7 +20,7 @@ in vec3 fragmentColor;
 in vec3 fragmentNormal;
 in vec3 fragmentPosition;
 
-out vec3 color;
+out vec4 out_color;
 
 vec3 applyLight(Light light, vec3 surfaceColor, vec3 surfaceNormal, vec3 surfacePosition) {
   vec3 surfaceToLight;
@@ -59,9 +59,11 @@ void main(){
     vec3 normal = normalize(transpose(inverse(mat3(model))) * fragmentNormal);
     vec3 position = vec3(model * vec4(fragmentPosition, 1));
 
-    color = vec3(0);
+    vec3 color = vec3(0);
 
     for(int i = 0; i < numLights; i++) {
       color += applyLight(lights[i], fragmentColor, normal, position);
     }
+
+    out_color = vec4(color, 1.0);
 }

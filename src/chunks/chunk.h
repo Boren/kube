@@ -112,6 +112,7 @@ private:
 
   Block *m_blocks; //!< Block information storage
 
+  GLuint m_VAO;
   GLuint m_vertexbuffer;
   GLuint m_colorbuffer;
   GLuint m_normalbuffer;

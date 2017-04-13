@@ -31,14 +31,18 @@ bool Renderer::initialize(int windowWidth, int windowHeight) {
   glClearColor(135 / 255.0f, 206 / 255.0f, 255 / 255.0f, 1);
 
   // Enable depth test
-  // glEnable(GL_DEPTH_TEST);
+  glEnable(GL_DEPTH_TEST);
 
   // Accept fragment if it closer to the camera than the former one
-  // glDepthFunc(GL_LESS);
+  glDepthFunc(GL_LESS);
 
   // Cull back face to optimize rendering
   glEnable(GL_CULL_FACE);
-  // glCullFace(GL_BACK);
+  glCullFace(GL_BACK);
+
+  // Enable blending for transparency
+  glEnable(GL_BLEND);
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
   // Load default shader
   m_defaultShader.compileShader("assets/shaders/BasicPhong.vs", Shader::VERTEX);
@@ -48,10 +52,6 @@ bool Renderer::initialize(int windowWidth, int windowHeight) {
   m_defaultShader.use();
 
   m_defaultShader.setUniform1i("ambientOcclusionEnabled", 1);
-
-  GLuint VertexArrayID;
-  glGenVertexArrays(1, &VertexArrayID);
-  glBindVertexArray(VertexArrayID);
 
   return true;
 }
@@ -95,24 +95,20 @@ void Renderer::render(SceneManager *sceneManager, Camera *camera,
 
   glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
-  glEnable(GL_CULL_FACE);
-  glEnable(GL_BLEND);
-  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
   char text[256];
   sprintf(text, "Render: %.3f ms (%.0f FPS)", m_profilingMean,
           1000 / m_profilingMean);
-  textManager->renderText(text, 5.0f, 5.0f, 0.4f, glm::vec3(0.2f, 0.2f, 0.2f));
+  textManager->renderText(text, 5.0f, 5.0f, 0.3f, glm::vec3(0.2f, 0.2f, 0.2f));
 
   text[256];
   sprintf(text, "Camera: X:%.0f Y:%.0f Z:%.0f", camera->getPosition().x,
           camera->getPosition().y, camera->getPosition().z);
-  textManager->renderText(text, 5.0f, 23.0f, 0.4f, glm::vec3(0.2f, 0.2f, 0.2f));
+  textManager->renderText(text, 5.0f, 23.0f, 0.3f, glm::vec3(0.2f, 0.2f, 0.2f));
 
   text[256];
   sprintf(text, "Vertices: %d",
           sceneManager->getChunkManager()->getNumberOfVertices());
-  textManager->renderText(text, 5.0f, 41.0f, 0.4f, glm::vec3(0.2f, 0.2f, 0.2f));
+  textManager->renderText(text, 5.0f, 41.0f, 0.3f, glm::vec3(0.2f, 0.2f, 0.2f));
 
   m_profiling.push_back((glfwGetTime() - renderStartTime) * 1000);
 
