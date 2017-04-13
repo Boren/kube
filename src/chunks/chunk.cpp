@@ -35,56 +35,42 @@ void Chunk::mesh() { buildMesh(); }
 void Chunk::update(float deltaTime) {}
 
 void Chunk::render() {
-  glEnableVertexAttribArray(0);
-  glBindBuffer(GL_ARRAY_BUFFER, m_vertexbuffer);
-  glVertexAttribPointer(0, // attribute. No particular reason for 0, but must
-                           // match the layout in the shader.
-                        3, // size
-                        GL_FLOAT, // type
-                        GL_FALSE, // normalized?
-                        0,        // stride
-                        (void *)0 // array buffer offset
-                        );
+  glCreateVertexArrays(1, &m_VAO);
 
-  glEnableVertexAttribArray(1);
-  glBindBuffer(GL_ARRAY_BUFFER, m_colorbuffer);
-  glVertexAttribPointer(1, // attribute. No particular reason for 1, but must
-                           // match the layout in the shader.
-                        4, // size
-                        GL_FLOAT, // type
-                        GL_FALSE, // normalized?
-                        0,        // stride
-                        (void *)0 // array buffer offset
-                        );
+  // Enable attributes
+  glEnableVertexArrayAttrib(m_VAO, 0);
+  glEnableVertexArrayAttrib(m_VAO, 1);
+  glEnableVertexArrayAttrib(m_VAO, 2);
+  glEnableVertexArrayAttrib(m_VAO, 3);
 
-  // 3rd attribute buffer : normals
-  glEnableVertexAttribArray(2);
-  glBindBuffer(GL_ARRAY_BUFFER, m_normalbuffer);
-  glVertexAttribPointer(2,        // attribute
-                        3,        // size
-                        GL_FLOAT, // type
-                        GL_FALSE, // normalized?
-                        0,        // stride
-                        (void *)0 // array buffer offset
-                        );
+  // Specify format
+  glVertexArrayAttribFormat(m_VAO, 0, 3, GL_FLOAT, GL_FALSE, 0);
+  glVertexArrayAttribFormat(m_VAO, 1, 4, GL_FLOAT, GL_FALSE, 0);
+  glVertexArrayAttribFormat(m_VAO, 2, 3, GL_FLOAT, GL_FALSE, 0);
+  glVertexArrayAttribFormat(m_VAO, 3, 1, GL_FLOAT, GL_FALSE, 0);
 
-  // 4th attribute buffer : Ambient Occlusion
-  glEnableVertexAttribArray(3);
-  glBindBuffer(GL_ARRAY_BUFFER, m_ambientOcclusionBuffer);
-  glVertexAttribPointer(3,        // attribute
-                        1,        // size
-                        GL_FLOAT, // type
-                        GL_FALSE, // normalized?
-                        0,        // stride
-                        (void *)0 // array buffer offset
-                        );
+  // Bind attributes to buffers
+  glVertexArrayAttribBinding(m_VAO, 0, 0);
+  glVertexArrayAttribBinding(m_VAO, 1, 1);
+  glVertexArrayAttribBinding(m_VAO, 2, 2);
+  glVertexArrayAttribBinding(m_VAO, 3, 3);
 
+  // Buffer data to vertex array
+  glVertexArrayVertexBuffer(m_VAO, 0, m_vertexbuffer, 0, 3 * sizeof(float));
+  glVertexArrayVertexBuffer(m_VAO, 1, m_colorbuffer, 0, 4 * sizeof(float));
+  glVertexArrayVertexBuffer(m_VAO, 2, m_normalbuffer, 0, 3 * sizeof(float));
+  glVertexArrayVertexBuffer(m_VAO, 3, m_ambientOcclusionBuffer, 0, 1 * sizeof(float));
+
+  // Set vertex array as current
+  glBindVertexArray(m_VAO);
+
+  // ... and DRAW!
   glDrawArrays(GL_TRIANGLES, 0, m_numberOfVertices);
 
-  glDisableVertexAttribArray(0);
-  glDisableVertexAttribArray(1);
-  glDisableVertexAttribArray(2);
-  glDisableVertexAttribArray(3);
+  GLenum err;
+  while ((err = glGetError()) != GL_NO_ERROR) {
+    std::cerr << "OpenGL error: " << err << std::endl;
+  }
 }
 
 bool Chunk::isLoaded() { return m_isLoaded; }
