@@ -26,9 +26,8 @@ bool Renderer::initialize(int windowWidth, int windowHeight) {
     glClearColor(17 / 255.0f, 83 / 255.0f, 255 / 255.0f, 1);
 
     // Enable depth test
-    glEnable(GL_DEPTH_TEST);
-
     // Accept fragment if it closer to the camera than the former one
+    glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
 
     // Cull back face to optimize rendering

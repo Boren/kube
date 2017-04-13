@@ -1,10 +1,8 @@
 #include "chunk.h"
 #include "../renderer/renderer.h"
 #include "../utils/log.h"
-#include <glm/glm.hpp>
 #include <iostream>
 #include <sstream>
-#include <vector>
 
 const float Chunk::BLOCK_SIZE = 1.0f;
 
@@ -32,35 +30,11 @@ void Chunk::load() {
 
 void Chunk::mesh() { buildMesh(); }
 
-void Chunk::update(float deltaTime) {}
+void Chunk::update(float deltaTime) {
+
+}
 
 void Chunk::render() {
-  glCreateVertexArrays(1, &m_VAO);
-
-  // Enable attributes
-  glEnableVertexArrayAttrib(m_VAO, 0);
-  glEnableVertexArrayAttrib(m_VAO, 1);
-  glEnableVertexArrayAttrib(m_VAO, 2);
-  glEnableVertexArrayAttrib(m_VAO, 3);
-
-  // Specify format
-  glVertexArrayAttribFormat(m_VAO, 0, 3, GL_FLOAT, GL_FALSE, 0);
-  glVertexArrayAttribFormat(m_VAO, 1, 4, GL_FLOAT, GL_FALSE, 0);
-  glVertexArrayAttribFormat(m_VAO, 2, 3, GL_FLOAT, GL_FALSE, 0);
-  glVertexArrayAttribFormat(m_VAO, 3, 1, GL_FLOAT, GL_FALSE, 0);
-
-  // Bind attributes to buffers
-  glVertexArrayAttribBinding(m_VAO, 0, 0);
-  glVertexArrayAttribBinding(m_VAO, 1, 1);
-  glVertexArrayAttribBinding(m_VAO, 2, 2);
-  glVertexArrayAttribBinding(m_VAO, 3, 3);
-
-  // Buffer data to vertex array
-  glVertexArrayVertexBuffer(m_VAO, 0, m_vertexbuffer, 0, 3 * sizeof(float));
-  glVertexArrayVertexBuffer(m_VAO, 1, m_colorbuffer, 0, 4 * sizeof(float));
-  glVertexArrayVertexBuffer(m_VAO, 2, m_normalbuffer, 0, 3 * sizeof(float));
-  glVertexArrayVertexBuffer(m_VAO, 3, m_ambientOcclusionBuffer, 0, 1 * sizeof(float));
-
   // Set vertex array as current
   glBindVertexArray(m_VAO);
 
@@ -146,7 +120,7 @@ void Chunk::buildMesh() {
     }
   }
 
-  m_numberOfVertices = m_vertices.size();
+    m_numberOfVertices = (int) m_vertices.size();
 
   if (m_numberOfVertices != 0) {
     glGenBuffers(1, &m_vertexbuffer);
@@ -174,6 +148,32 @@ void Chunk::buildMesh() {
                  &m_ambientOcclusionValues[0], GL_STATIC_DRAW);
     m_ambientOcclusionValues.clear();
   }
+
+    glCreateVertexArrays(1, &m_VAO);
+
+    // Enable attributes
+    glEnableVertexArrayAttrib(m_VAO, 0);
+    glEnableVertexArrayAttrib(m_VAO, 1);
+    glEnableVertexArrayAttrib(m_VAO, 2);
+    glEnableVertexArrayAttrib(m_VAO, 3);
+
+    // Specify format
+    glVertexArrayAttribFormat(m_VAO, 0, 3, GL_FLOAT, GL_FALSE, 0);
+    glVertexArrayAttribFormat(m_VAO, 1, 4, GL_FLOAT, GL_FALSE, 0);
+    glVertexArrayAttribFormat(m_VAO, 2, 3, GL_FLOAT, GL_FALSE, 0);
+    glVertexArrayAttribFormat(m_VAO, 3, 1, GL_FLOAT, GL_FALSE, 0);
+
+    // Bind attributes to buffers
+    glVertexArrayAttribBinding(m_VAO, 0, 0);
+    glVertexArrayAttribBinding(m_VAO, 1, 1);
+    glVertexArrayAttribBinding(m_VAO, 2, 2);
+    glVertexArrayAttribBinding(m_VAO, 3, 3);
+
+    // Buffer data to vertex array
+    glVertexArrayVertexBuffer(m_VAO, 0, m_vertexbuffer, 0, 3 * sizeof(float));
+    glVertexArrayVertexBuffer(m_VAO, 1, m_colorbuffer, 0, 4 * sizeof(float));
+    glVertexArrayVertexBuffer(m_VAO, 2, m_normalbuffer, 0, 3 * sizeof(float));
+    glVertexArrayVertexBuffer(m_VAO, 3, m_ambientOcclusionBuffer, 0, 1 * sizeof(float));
 
   m_isMeshed = true;
 }

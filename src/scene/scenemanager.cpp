@@ -1,7 +1,6 @@
 #include "scenemanager.h"
 #include <iostream>
 #include <sstream>
-#include <string>
 
 SceneManager::SceneManager() {}
 
