@@ -1,4 +1,4 @@
-#version 330 core
+#version 450 core
 
 // Uniforms
 uniform mat4 camera;
@@ -8,13 +8,11 @@ uniform mat4 model;
 layout(location = 0) in vec3 position;
 layout(location = 1) in vec3 color;
 layout(location = 2) in vec3 normal;
-layout(location = 3) in float ambientOcclusion;
 
 // Output data to fragment shader
 out vec3 fragmentColor;
 out vec3 fragmentNormal;
 out vec3 fragmentPosition;
-out float fragmentAO;
 
 void main(){
 
@@ -25,5 +23,4 @@ void main(){
 	fragmentColor = color;
 	fragmentNormal = normal;
 	fragmentPosition = position;
-	fragmentAO = ambientOcclusion;
 }

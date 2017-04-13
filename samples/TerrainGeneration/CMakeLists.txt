@@ -15,8 +15,7 @@ add_executable(TerrainGeneration
 	noise/noiseutils.h)
 
 # Move assets to build dir
-file(COPY shaders DESTINATION .)
-file(COPY fonts DESTINATION .)
+file(COPY assets DESTINATION .)
 
 # Use C++11
 target_compile_features(TerrainGeneration PRIVATE cxx_range_for)
