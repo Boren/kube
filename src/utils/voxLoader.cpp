@@ -1,9 +1,10 @@
 #include "voxLoader.h"
-#include "log.h"
 
 #include <iostream>
 #include <sstream>
 #include <string.h>
+
+#include "log.h"
 
 // TODO: Add support for PACK and split functionality into functions
 VoxelModel VoxLoader::loadVoxFile(std::string path) {

@@ -1,4 +1,5 @@
 #include "scenemanager.h"
+
 #include <iostream>
 #include <sstream>
 
@@ -37,7 +38,7 @@ void SceneManager::updateLightUniform(Shader *shader) {
         ss.str("");
         ss << "lights[" << i << "].color";
         shader->setUniform3f(ss.str().c_str(), m_lights[i]->color.r,
-                             m_lights[i]->color.g, m_lights[i]->color.g);
+                             m_lights[i]->color.g, m_lights[i]->color.b);
 
         ss.str("");
         ss << "lights[" << i << "].attenuation";
@@ -49,7 +50,7 @@ void SceneManager::updateLightUniform(Shader *shader) {
     }
 }
 
-void SceneManager::render(Renderer *renderer) {
+void SceneManager::render(Renderer *renderer, Shader *shader) {
     if (isLightsChanged) {
         isLightsChanged = false;
     }
@@ -62,7 +63,7 @@ void SceneManager::render(Renderer *renderer) {
 
 
     for (auto const &m: m_voxelModels) {
-        m->render();
+        m->render(shader);
     }
 }
 

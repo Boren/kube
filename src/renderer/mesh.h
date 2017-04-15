@@ -2,9 +2,10 @@
 
 #include <vector>
 
+#include <glad/glad.h>
 #include <glm/vec2.hpp>
 #include <glm/vec3.hpp>
-#include <glad/glad.h>
+
 #include "shader.h"
 
 //! Generic mesh object containing information about how to render complex

@@ -12,4 +12,6 @@ private:
     ChunkManager *m_chunkManager;
     Engine *m_engine;
     Camera *m_camera;
+
+    void toggleRenderMode();
 };

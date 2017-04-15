@@ -1,11 +1,12 @@
 #pragma once
 
+#include <vector>
+
 #include "../chunks/chunkManager.h"
 #include "light.h"
 #include "../renderer/renderer.h"
 #include "../renderer/shader.h"
 #include "voxelModel.h"
-#include <vector>
 
 class Renderer;
 
@@ -18,7 +19,7 @@ public:
 
     void update(float deltaTime, Camera *camera);
 
-    void render(Renderer *renderer);
+    void render(Renderer *renderer, Shader *shader);
 
     void addLight(Light *light);
 

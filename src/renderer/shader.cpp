@@ -1,10 +1,11 @@
+#include "shader.h"
+
 #include <algorithm>
 #include <fstream>
 #include <iostream>
 #include <vector>
 
 #include "../utils/log.h"
-#include "shader.h"
 
 Shader::Shader() {
   m_handle = 0;
@@ -15,13 +16,13 @@ bool Shader::compileShader(std::string path, ShaderType shaderType) {
   GLuint shaderId;
 
   switch (shaderType) {
-  case ShaderType::FRAGMENT:
-    shaderId = glCreateShader(GL_FRAGMENT_SHADER);
-    break;
+    case ShaderType::FRAGMENT:
+      shaderId = glCreateShader(GL_FRAGMENT_SHADER);
+          break;
 
-  case ShaderType::VERTEX:
-    shaderId = glCreateShader(GL_VERTEX_SHADER);
-    break;
+    case ShaderType::VERTEX:
+      shaderId = glCreateShader(GL_VERTEX_SHADER);
+          break;
   }
 
   // Read the shader code from file

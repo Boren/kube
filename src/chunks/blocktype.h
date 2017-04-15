@@ -1,14 +1,16 @@
 #pragma once
 
-#include "../utils/color.h"
-#include <glm/glm.hpp>
 #include <string>
+
+#include <glm/glm.hpp>
+
+#include "../utils/color.h"
 
 class BlockType {
 public:
-  //! Default Constructor
-  BlockType(std::string name, Color color);
+    //! Default Constructor
+    BlockType(std::string name, Color color);
 
-  Color m_color;
-  std::string m_name;
+    Color m_color;
+    std::string m_name;
 };

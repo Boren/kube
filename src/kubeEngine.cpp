@@ -81,7 +81,6 @@ bool Engine::update(float deltaTime) {
   if (glfwGetKey(pWindow->getWindow(), GLFW_KEY_ESCAPE) == GLFW_PRESS ||
       glfwWindowShouldClose(pWindow->getWindow())) {
     return false;
-    glfwTerminate();
   }
 
   pWindow->update();

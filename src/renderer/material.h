@@ -6,8 +6,8 @@
 class Material {
 public:
 private:
-  Color ambientColor;
-  Color diffuseColor;
-  Color specularColor;
-  float shininess;
+    Color ambientColor;
+    Color diffuseColor;
+    Color specularColor;
+    float shininess;
 };

@@ -1,29 +1,19 @@
-// Include standard headers
+#include "renderer.h"
+
 #include <fstream>
 #include <iostream>
-#include <vector>
-
-#include <glad/glad.h>
-
-// Include GLFW (Window Manager)
-#include <GLFW/glfw3.h>
-
-// Include GLM (OpenGL Mathematics)
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtx/string_cast.hpp>
 #include <iomanip>
 #include <numeric>
 
-#include "../chunks/chunkManager.h"
-#include "renderer.h"
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/string_cast.hpp>
 
 bool Renderer::initialize(int windowWidth, int windowHeight) {
     m_windowHeight = windowHeight;
     m_windowWidth = windowWidth;
 
     // Set background color
-    glClearColor(17 / 255.0f, 83 / 255.0f, 255 / 255.0f, 1);
+    glClearColor(0 / 255.0f, 0 / 255.0f, 0 / 255.0f, 1);
 
     // Enable depth test
     // Accept fragment if it closer to the camera than the former one
@@ -56,18 +46,12 @@ void Renderer::render(SceneManager *sceneManager, Camera *camera,
     double renderStartTime = glfwGetTime();
 
     glm::mat4 model = glm::mat4(1.0f);
-    model = glm::translate(model, glm::vec3(8, 8, 8));
-    model = glm::rotate(model, rotateAngle, glm::vec3(0, 1, 0));
-    model = glm::translate(model, glm::vec3(-8, -8, -8));
     glm::mat4 viewProjection =
             camera->getProjectionMatrix() * camera->getViewMatrix();
-    glm::mat4 MVP =
-            camera->getProjectionMatrix() * camera->getViewMatrix() * model;
 
     m_defaultShader.use();
     m_defaultShader.setUniformMatrix4fv("camera", viewProjection);
     m_defaultShader.setUniformMatrix4fv("model", model);
-    m_defaultShader.setUniformMatrix4fv("MVP", MVP);
     m_defaultShader.setUniform3f("cameraPosition", camera->getPosition().x,
                                  camera->getPosition().y,
                                  camera->getPosition().z);
@@ -84,7 +68,7 @@ void Renderer::render(SceneManager *sceneManager, Camera *camera,
             break;
     }
 
-    sceneManager->render(this);
+    sceneManager->render(this, &m_defaultShader);
 
     // Text rendering. Disable wireframe
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
@@ -94,11 +78,11 @@ void Renderer::render(SceneManager *sceneManager, Camera *camera,
             1000 / m_profilingMean);
     textManager->renderText(text, 5.0f, 5.0f, 0.3f, glm::vec3(0.2f, 0.2f, 0.2f));
 
-    sprintf(text, "Camera: X:%.1f Y:%.1f Z:%.1f", camera->getPosition().x,
+    sprintf(text, "Camera - X: %.1f Y: %.1f Z: %.1f", camera->getPosition().x,
             camera->getPosition().y, camera->getPosition().z);
     textManager->renderText(text, 5.0f, 23.0f, 0.3f, glm::vec3(0.2f, 0.2f, 0.2f));
 
-    sprintf(text, "Camera: Hori:%.3f Vert:%.3f", camera->getHorizontalAngle(), camera->getVerticalAngle());
+    sprintf(text, "Camera - Yaw: %.3f Pitch: %.3f", camera->getYaw(), camera->getPitch());
     textManager->renderText(text, 5.0f, 41.0f, 0.3f, glm::vec3(0.2f, 0.2f, 0.2f));
 
     //sprintf(text, "Vertices: %d",

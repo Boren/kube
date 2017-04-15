@@ -21,18 +21,18 @@ void Log::message(Log::Level level, std::string caller, std::string message) {
     // Get loglevel as string
     std::string logLevelString;
     switch (level) {
-    case Level::FATAL:
-      logLevelString = "FATAL";
-      break;
-    case Level::ERROR:
-      logLevelString = "ERROR";
-      break;
-    case Level::WARN:
-      logLevelString = "WARN";
-      break;
-    case Level::DEBUG:
-      logLevelString = "DEBUG";
-      break;
+      case Level::FATAL:
+        logLevelString = "FATAL";
+            break;
+      case Level::ERROR:
+        logLevelString = "ERROR";
+            break;
+      case Level::WARN:
+        logLevelString = "WARN";
+            break;
+      case Level::DEBUG:
+        logLevelString = "DEBUG";
+            break;
     }
 
     std::cout << "[" << timeString << " - " << logLevelString << " - " << caller

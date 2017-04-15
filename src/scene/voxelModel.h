@@ -1,9 +1,12 @@
 #pragma once
 
 #include <vector>
+
 #include <glad/glad.h>
 #include <glm/vec3.hpp>
 #include <glm/vec4.hpp>
+
+#include "../renderer/shader.h"
 
 class VoxelModel {
 public:
@@ -13,13 +16,16 @@ public:
 
     void mesh();
 
-    void render();
+    void render(Shader *shader);
+
+    void setPosition(glm::vec3 newPosition);
 
 private:
     unsigned int m_sizex;
     unsigned int m_sizey;
     unsigned int m_sizez;
     std::vector<std::vector<std::vector<unsigned int>>> m_data;
+    glm::vec3 m_position;
 
     GLuint m_VAO;
     GLuint m_vertexbuffer;

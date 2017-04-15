@@ -1,8 +1,12 @@
-#include <utils/log.h>
-#include <utils/color.h>
-#include <iostream>
-#include <chunks/block.h>
 #include "voxelModel.h"
+
+#include <iostream>
+
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
+#include <chunks/block.h>
+#include <utils/log.h>
 
 VoxelModel::VoxelModel(unsigned int sizex, unsigned int sizey, unsigned int sizez) {
     m_sizex = sizex;
@@ -10,17 +14,23 @@ VoxelModel::VoxelModel(unsigned int sizex, unsigned int sizey, unsigned int size
     m_sizez = sizez;
 
     m_data.resize(sizex);
-    for (int i = 0; i < sizex; ++i) {
+    for (unsigned int i = 0; i < sizex; ++i) {
         m_data[i].resize(sizey);
 
-        for (int j = 0; j < sizey; ++j) {
+        for (unsigned int j = 0; j < sizey; ++j) {
             m_data[i][j].resize(sizez);
 
-            for (int k = 0; k < sizez; ++k) {
-                m_data[i][j][k] = -1;
+            for (unsigned int k = 0; k < sizez; ++k) {
+                m_data[i][j][k] = 0;
             }
         }
     }
+
+    m_position = glm::vec3(0.0f, 0.0f, 0.0f);
+}
+
+void VoxelModel::setPosition(glm::vec3 newPosition) {
+    m_position = newPosition;
 }
 
 void VoxelModel::setDataAtPoint(unsigned int x, unsigned int y, unsigned int z, unsigned int data) {
@@ -33,7 +43,7 @@ void VoxelModel::mesh() {
     for (unsigned int x = 0; x < m_sizex; x++) {
         for (unsigned int y = 0; y < m_sizey; y++) {
             for (unsigned int z = 0; z < m_sizez; z++) {
-                if (m_data[x][y][z] != -1) {
+                if (m_data[x][y][z] != 0) {
                     meshBlock(x, y, z, m_data[x][y][z]);
                 }
             }
@@ -84,7 +94,12 @@ void VoxelModel::mesh() {
     glVertexArrayVertexBuffer(m_VAO, 2, m_normalbuffer, 0, 3 * sizeof(float));
 }
 
-void VoxelModel::render() {
+void VoxelModel::render(Shader *shader) {
+    glm::mat4 transform;
+    transform = glm::translate(transform, m_position);
+    GLint transformLoc = glGetUniformLocation(shader->getHandle(), "model");
+    glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform));
+
     glBindVertexArray(m_VAO);
 
     // ... and DRAW!
