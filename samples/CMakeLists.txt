@@ -1,2 +1,3 @@
 add_subdirectory(TerrainGeneration)
 add_subdirectory(PointLightTest)
+add_subdirectory(VoxLoading)

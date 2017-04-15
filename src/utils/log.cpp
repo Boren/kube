@@ -2,7 +2,6 @@
 #include <ctime>
 #include <iomanip>
 #include <iostream>
-#include <string>
 
 Log::Level Log::currentLevel = Level::DEBUG;
 

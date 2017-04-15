@@ -91,7 +91,9 @@ set(KUBE_SOURCE_FILES
 
   src/utils/color.h
 	src/utils/log.cpp
-  src/utils/log.h)
+        src/utils/log.h
+        src/utils/voxLoader.cpp
+        src/utils/voxLoader.h src/scene/voxelModel.cpp src/scene/voxelModel.h)
 
 add_library(Kube src/glad.c ${KUBE_SOURCE_FILES})
 

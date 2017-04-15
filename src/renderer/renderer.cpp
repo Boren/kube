@@ -90,17 +90,20 @@ void Renderer::render(SceneManager *sceneManager, Camera *camera,
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
     char text[256];
-    sprintf(text, "Render: %.3f ms (%.0f FPS)", m_profilingMean,
+    sprintf(text, "Render: %.2f ms (%.1f FPS)", m_profilingMean,
             1000 / m_profilingMean);
     textManager->renderText(text, 5.0f, 5.0f, 0.3f, glm::vec3(0.2f, 0.2f, 0.2f));
 
-    sprintf(text, "Camera: X:%.0f Y:%.0f Z:%.0f", camera->getPosition().x,
+    sprintf(text, "Camera: X:%.1f Y:%.1f Z:%.1f", camera->getPosition().x,
             camera->getPosition().y, camera->getPosition().z);
     textManager->renderText(text, 5.0f, 23.0f, 0.3f, glm::vec3(0.2f, 0.2f, 0.2f));
 
-    sprintf(text, "Vertices: %d",
-            sceneManager->getChunkManager()->getNumberOfVertices());
+    sprintf(text, "Camera: Hori:%.3f Vert:%.3f", camera->getHorizontalAngle(), camera->getVerticalAngle());
     textManager->renderText(text, 5.0f, 41.0f, 0.3f, glm::vec3(0.2f, 0.2f, 0.2f));
+
+    //sprintf(text, "Vertices: %d",
+    //        sceneManager->getChunkManager()->getNumberOfVertices());
+    //textManager->renderText(text, 5.0f, 41.0f, 0.3f, glm::vec3(0.2f, 0.2f, 0.2f));
 
     m_profiling.push_back((glfwGetTime() - renderStartTime) * 1000);
 

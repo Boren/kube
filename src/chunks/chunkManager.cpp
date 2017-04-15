@@ -1,10 +1,6 @@
 #include "chunkManager.h"
-#include <glad/glad.h>
 #include <iomanip>
 #include <iostream>
-
-#include "../utils/log.h"
-#include <sstream>
 
 ChunkManager::ChunkManager(int loadDistance, int viewDistance,
                            bool dynamicLoading) {

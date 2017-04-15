@@ -1,7 +1,6 @@
 #include <algorithm>
 #include <fstream>
 #include <iostream>
-#include <stdio.h>
 #include <vector>
 
 #include "../utils/log.h"
