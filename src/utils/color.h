@@ -1,6 +1,10 @@
 #pragma once
 
+#include <iostream>
 #include <glm/glm.hpp>
+#include <ios>
+#include <sstream>
+#include <iomanip>
 
 //! Struct representation of a single color
 struct Color {
@@ -39,11 +43,18 @@ struct Color {
      * \param b Blue component
      * \param a Alpha component
      */
-    Color(float r, float g, float b, float a) {
-        this->r = r;
-        this->g = g;
-        this->b = b;
-        this->a = a;
+    Color(float r, float g, float b, float a, bool intFormat = false) {
+        if (intFormat) {
+            this->r = r / 255.0f;
+            this->g = g / 255.0f;
+            this->b = b / 255.0f;
+            this->a = a / 255.0f;
+        } else {
+            this->r = r;
+            this->g = g;
+            this->b = b;
+            this->a = a;
+        }
     }
 
     /*!
@@ -62,4 +73,10 @@ struct Color {
 
     /*! Color can be implicitly converted to glm::vec4 */
     operator glm::vec4() { return glm::vec4(r, g, b, a); }
+
+    operator std::string() const {
+        std::stringstream ss;
+        ss << "0x" << std::hex << std::uppercase << std::setfill('0') << std::setw(2) << int(r*255) << std::setw(2) << int(g*255) << std::setw(2) << int(b*255) << std::setw(2) << int(a*255);
+        return ss.str();
+    }
 };

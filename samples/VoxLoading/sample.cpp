@@ -45,16 +45,16 @@ void Sample::run() {
     pointLight->attenuation = 0.0f;
     m_engine->getSceneManager()->addLight(pointLight);
 
-    VoxelModel m = VoxLoader::loadVoxFile("assets/models/chr_man.vox");
+    VoxelModel m = VoxLoader::loadVoxFile("assets/models/monu1.vox")[0];
     m_engine->getSceneManager()->addVoxelModel(&m);
 
-    VoxelModel torch = VoxLoader::loadVoxFile("assets/models/torch.vox");
+    /*VoxelModel torch = VoxLoader::loadVoxFile("assets/models/torch.vox");
     torch.setPosition(glm::vec3(20.0f, 20.0f, 0.0f));
     m_engine->getSceneManager()->addVoxelModel(&torch);
 
     VoxelModel pikachu = VoxLoader::loadVoxFile("assets/models/pikachu.vox");
     pikachu.setPosition(glm::vec3(-20.0f, 10.0f, 0.0f));
-    m_engine->getSceneManager()->addVoxelModel(&pikachu);
+    m_engine->getSceneManager()->addVoxelModel(&pikachu);*/
 
     while (true) {
         float deltaTime = m_engine->getDeltaTime();

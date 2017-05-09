@@ -1,11 +1,8 @@
 #include "voxelModel.h"
 
-#include <iostream>
-
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include <chunks/block.h>
 #include <utils/log.h>
 
 VoxelModel::VoxelModel(unsigned int sizex, unsigned int sizey, unsigned int sizez) {
@@ -112,7 +109,7 @@ void VoxelModel::render(Shader *shader) {
 }
 
 void VoxelModel::meshBlock(unsigned int x, unsigned int y, unsigned int z, unsigned int data) {
-    glm::vec4 color = Color(colorPalette[data]);
+    glm::vec4 color = getColor(data);
 
     glm::vec3 p1(x + 0, y + 0, z + 1);
     glm::vec3 p2(x + 1, y + 0, z + 1);
@@ -151,4 +148,17 @@ void VoxelModel::createFaceMesh(glm::vec3 normal, glm::vec4 color,
     for (int i = 0; i < 6; i++) {
         m_colors.push_back(color);
     }
+}
+
+Color VoxelModel::getColor(unsigned int index) {
+    if (_useCustomColorPalette) {
+        return Color(_colorPalette[index]);
+    } else {
+        return Color(defaultColorPalette[index]);
+    }
+}
+
+void VoxelModel::setColorPalette(std::vector<unsigned int> colorPalette) {
+    _colorPalette = colorPalette;
+    _useCustomColorPalette = true;
 }

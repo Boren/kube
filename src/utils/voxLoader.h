@@ -7,5 +7,5 @@
 
 class VoxLoader {
 public:
-    static VoxelModel loadVoxFile(std::string path);
+    static std::vector<VoxelModel> loadVoxFile(std::string path);
 };
