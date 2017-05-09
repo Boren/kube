@@ -74,6 +74,7 @@ void VoxelModel::mesh() {
     // Enable attributes
     glEnableVertexArrayAttrib(m_VAO, 0);
     glEnableVertexArrayAttrib(m_VAO, 1);
+    glEnableVertexArrayAttrib(m_VAO, 2);
 
     // Specify format
     glVertexArrayAttribFormat(m_VAO, 0, 3, GL_FLOAT, GL_FALSE, 0);
