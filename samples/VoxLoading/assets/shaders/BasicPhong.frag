@@ -44,14 +44,20 @@ vec3 applyLight(Light light, vec3 surfaceColor, vec3 surfaceNormal, vec3 surface
 
   // Calculate specular component
   float specularStrength = 0.0;
-  float shininess = 80.0f;
+  float shininess = 10.0f;
   if(diffuseStrength > 0.0) {
-    specularStrength = pow(max(0.0, dot(surfaceToCamera, reflect(-surfaceToLight, surfaceNormal))), shininess);
+    vec3 incidenceVector = -surfaceToLight; //a unit vector
+    vec3 reflectionVector = reflect(incidenceVector, surfaceNormal); //also a unit vector
+    vec3 surfaceToCamera = normalize(cameraPosition - surfacePosition); //also a unit vector
+    float cosAngle = max(0.0, dot(surfaceToCamera, reflectionVector));
+    specularStrength = pow(cosAngle, shininess);
   }
 
   vec3 specular = specularStrength * vec3(1.0f, 1.0f, 1.0f) * light.color;
 
-  return ambient + attenuation*(diffuse+specular);
+  vec3 linearColor = ambient + attenuation*(diffuse+specular);
+  vec3 gamma = vec3(1.0/2.2);
+  return pow(linearColor, gamma);
 }
 
 void main(){

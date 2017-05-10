@@ -27,23 +27,25 @@ void Sample::run() {
     m_camera->setPerspectiveProjection(65.0f,
                                        (float) m_engine->getWindow()->getWidth() /
                                        m_engine->getWindow()->getHeight());
-
+    m_camera->setPosition(glm::vec3(123.0f, -15.0f, 0.0f));
+    m_camera->setYaw(135.0f);
+    m_camera->setPitch(15.0f);
     m_engine->setCamera(m_camera);
 
     // Set up a basic light source (sun)
     Light *sun = new Light();
     sun->position = glm::vec4(1, 0.8, -0.6, 0);
     sun->color = glm::vec3(1.0f, 1.0f, 1.0f);
-    sun->ambientStrength = 1.0f;
+    sun->ambientStrength = 0.1f;
     m_engine->getSceneManager()->addLight(sun);
 
     // Set up a test point light
     Light *pointLight = new Light();
-    pointLight->position = glm::vec4(20.0f, 20.0f, 30.0f, 1);
-    pointLight->color = glm::vec3(1.0f, 0.58f, 0.16f);
+    pointLight->position = glm::vec4(123.0f, -15.0f, 0.0f, 1);
+    pointLight->color = glm::vec3(1.0f, 0.0f, 0.0f);
     pointLight->ambientStrength = 0.0f;
-    pointLight->attenuation = 0.0f;
-    m_engine->getSceneManager()->addLight(pointLight);
+    pointLight->attenuation = 0.1f;
+    //m_engine->getSceneManager()->addLight(pointLight);
 
     VoxelModel m = VoxLoader::loadVoxFile("assets/models/monu1.vox")[0];
     m_engine->getSceneManager()->addVoxelModel(&m);
@@ -90,9 +92,9 @@ void Sample::run() {
         m_camera->setPitch(m_camera->getPitch() + yoffset);
 
         glm::vec3 pos = m_camera->getPosition();
-        pos.z = 10.0f;
+        pos.z = 50.0f;
         m_camera->setPosition(pos);
-
+        pointLight->position = glm::vec4(pos, 1);
 
         if (!m_engine->update(deltaTime))
             break;
