@@ -1,3 +1,5 @@
+![alt text](img/terrain_generation.png "Example Terrain")
+
 # KUBE
 Simple minecraft-like game and rendering engine based on OpenGL. Focus on new standards and state-of-the-art technologies. Educational project.
 
